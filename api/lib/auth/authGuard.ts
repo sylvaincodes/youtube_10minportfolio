@@ -2,8 +2,18 @@ import { auth, clerkClient } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 import { devLog } from "../utils";
 
+type ClerkUserWithPrivateMetadata = {
+  privateMetadata: Record<string, unknown>;
+};
+
+type AuthGuardResult =
+  | NextResponse
+  | { userId: string; sessionId: string; user: ClerkUserWithPrivateMetadata };
+
 // Middleware helper to protect routes
-export async function authGuard({ requireAdmin = true } = {}) {
+export async function authGuard({
+  requireAdmin = true,
+} = {}): Promise<AuthGuardResult> {
   try {
     // retreive the authenticated user and session
     const { userId, sessionId } = await auth();
