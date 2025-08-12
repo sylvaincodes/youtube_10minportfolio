@@ -13,10 +13,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET(req: NextRequest, { params }: Params) {
   try {
     //guard auth
-    const auth = await authGuard();
-    if (auth instanceof NextResponse) {
-      return auth;
-    }
+    await authGuard();
 
     //Get template id from route parameter
     const { id } = await params;
@@ -55,8 +52,7 @@ export async function GET(req: NextRequest, { params }: Params) {
 export async function PUT(req: NextRequest, { params }: Params) {
   try {
     // auth guard
-    const auth = await authGuard();
-    if (auth instanceof NextResponse) return auth;
+    await authGuard();
 
     //Extract the id
     const { id } = await params;
@@ -129,8 +125,7 @@ export async function PUT(req: NextRequest, { params }: Params) {
 export async function DELETE(req: NextRequest, { params }: Params) {
   try {
     // run guard
-    const auth = await authGuard();
-    if (auth instanceof NextResponse) return auth;
+    await authGuard();
 
     // Extract template ID from route
     const { id } = await params;

@@ -14,8 +14,7 @@ import {
 export async function GET(req: NextRequest, { params }: Params) {
   try {
     // Run guard
-    const auth = authGuard({ requireAdmin: false });
-    if (auth instanceof NextResponse) return auth;
+    authGuard({ requireAdmin: false });
 
     // Get params
     const { id } = await params;
@@ -75,8 +74,7 @@ export async function GET(req: NextRequest, { params }: Params) {
 export async function PUT(req: NextRequest, { params }: Params) {
   try {
     // Run guard
-    const auth = authGuard({ requireAdmin: false });
-    if (auth instanceof NextResponse) return auth;
+    authGuard({ requireAdmin: false });
 
     // Get id
     const { id } = await params;

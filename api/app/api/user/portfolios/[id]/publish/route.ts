@@ -11,8 +11,7 @@ import { devLog } from "@/lib/utils";
 export async function PATCH(request: NextRequest, { params }: Params) {
   try {
     // Run guard
-    const auth = authGuard({ requireAdmin: false });
-    if (auth instanceof NextResponse) return auth;
+    authGuard({ requireAdmin: false });
 
     // Get params
     const { id } = await params;

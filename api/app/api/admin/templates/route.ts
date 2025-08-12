@@ -14,10 +14,8 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET(request: NextRequest) {
   try {
     //run the auth guard
-    const auth = await authGuard();
-    if (auth instanceof NextResponse) {
-      return auth;
-    }
+    await authGuard();
+    
     //CONNECT  TO mongoDB
     await connectDB();
 
@@ -68,10 +66,7 @@ export async function GET(request: NextRequest) {
 export async function POST(req: NextRequest) {
   try {
     // run guard
-    const auth = await authGuard();
-    if (auth instanceof NextResponse) {
-      return auth;
-    }
+    await authGuard();
 
     // connect db
     await connectDB();

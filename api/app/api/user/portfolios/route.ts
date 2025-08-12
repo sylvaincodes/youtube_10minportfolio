@@ -18,8 +18,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET(request: NextRequest, { params }: Params) {
   try {
     // Run guard
-    const auth = authGuard({ requireAdmin: false });
-    if (auth instanceof NextResponse) return auth;
+    authGuard({ requireAdmin: false });
 
     // Get params
     const { searchParams } = new URL(request.url);
@@ -78,8 +77,7 @@ export async function GET(request: NextRequest, { params }: Params) {
 export async function POST(request: NextRequest, { params }: Params) {
   try {
     // Run authguard
-    const auth = authGuard({ requireAdmin: false });
-    if (auth instanceof NextResponse) return auth;
+    authGuard({ requireAdmin: false });
 
     // Connect to db
     await connectDB();

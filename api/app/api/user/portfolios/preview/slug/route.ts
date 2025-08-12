@@ -10,8 +10,7 @@ import { devLog } from "@/lib/utils";
 export async function GET(request: NextRequest, { params }: Params) {
   try {
     // Run guard
-    const auth = authGuard({ requireAdmin: false });
-    if (auth instanceof NextResponse) return auth;
+    authGuard({ requireAdmin: false });
 
     // Connect db
     await connectDB();

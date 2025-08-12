@@ -3,16 +3,15 @@
 import { authGuard } from "@/lib/auth/authGuard";
 import connectDB from "@/lib/database";
 import { Params } from "@/types/api";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { auth as Auth } from "@clerk/nextjs/server";
 import { portfolioRepository } from "@/repositories/PortfolioRepository";
 import { devLog } from "@/lib/utils";
 
-export async function PATCH(request: NextResponse, { params }: Params) {
+export async function PATCH(request: NextRequest, { params }: Params) {
   try {
     // Run guard
-    const auth = authGuard({ requireAdmin: false });
-    if (auth instanceof NextResponse) return auth;
+    authGuard({ requireAdmin: false });
 
     // Conenct db
     await connectDB();
