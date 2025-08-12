@@ -44,15 +44,15 @@ export const handler: Handler = async (event) => {
     };
   }
 
-  // eXTRACT sVIX SIGNATURE HEADERS
-  const svix_id = headers["Svix-id"] || headers["Svix-Id"];
-  const svix_timestamp = headers["Svix-Timestamp"] || headers["Svix-timestamp"];
-  const svix_signature = headers["Svix-Signature"] || headers["Svix-signature"];
+  // Extract Svix signature headers
+  const svix_id = headers["Svix-Id"] || headers["svix-id"];
+  const svix_timestamp = headers["Svix-Timestamp"] || headers["svix-timestamp"];
+  const svix_signature = headers["Svix-Signature"] || headers["svix-signature"];
 
   if (!svix_id || !svix_timestamp || !svix_signature) {
     return {
       statusCode: 400,
-      body: JSON.stringify({ error: "Missing Svix headers" }),
+      body: JSON.stringify({ error: "Missing Svix signature headers" }),
     };
   }
 
