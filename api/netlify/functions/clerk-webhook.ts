@@ -110,7 +110,7 @@ export const handler: Handler = async (event) => {
     return {
       statusCode: 500,
       body: JSON.stringify({
-        error: "Internal server error",
+        error: "Internal server error" + error,
         details: error,
       }),
     };
