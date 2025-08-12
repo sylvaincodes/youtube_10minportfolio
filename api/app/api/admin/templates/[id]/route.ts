@@ -170,7 +170,7 @@ export async function DELETE(req: NextRequest, { params }: Params) {
         message: "Template deleted successfully",
       },
       {
-        status: 204,
+        status: 200,
       }
     );
   } catch (error) {

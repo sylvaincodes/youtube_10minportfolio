@@ -19,6 +19,9 @@ export const templateSchema = z.object({
     .string()
     .trim()
     .url("Thumbnail must be a valid URL")
+    .refine((val) => /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif))$/i.test(val), {
+      message: "Thumbnail must be a valid image URL",
+    })
     .transform((val) => sanitize(val)),
 
   font: safeString("Font", 1, 100).transform(sanitize),
@@ -35,5 +38,5 @@ export const idSchema = z
   });
 
 export const templateUpdateSchema = templateSchema.partial();
-export type TemplateCreateInput = z.infer<typeof templateSchema>
-export type TemplateUpdateInput = z.infer<typeof templateUpdateSchema>
+export type TemplateCreateInput = z.infer<typeof templateSchema>;
+export type TemplateUpdateInput = z.infer<typeof templateUpdateSchema>;

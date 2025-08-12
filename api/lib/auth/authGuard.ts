@@ -9,7 +9,7 @@ export async function authGuard({ requireAdmin = true } = {}) {
     const { userId, sessionId } = await auth();
 
     //redirect to sign in if not authenticated
-    if (!userId || !sessionId) {
+    if (!userId) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
